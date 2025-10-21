@@ -3,4 +3,3 @@ leafmap
 geopandas
 xarray
 rasterio
-localtileserver
