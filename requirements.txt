@@ -1,3 +1,6 @@
 streamlit
 leafmap
 geopandas
+xarray
+rasterio
+localtileserver

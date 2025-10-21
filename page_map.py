@@ -1,40 +1,36 @@
 import streamlit as st
 import leafmap.foliumap as leafmap
-import geopandas as gpd # 引入 GeoPandas
+import geopandas as gpd
 
 st.set_page_config(layout="wide")
-st.title("Leafmap + GeoPandas (向量)")
+st.title("Leafmap - 向量 (Vector) + 網格 (Raster)")
 
-# --- 1. 用 GeoPandas 讀取資料 ---
-# 這是 Natural Earth 110m cultural vectors 的官方託管 .zip 檔連結
+# --- 1. 網格資料 (COG) ---
+# 範例:線上的 SRTM DEM (全球數值高程模型)
+cog_url = "https://github.com/opengeos/leafmap/raw/master/examples/data/cog.tif"
+
+# --- 2. 向量資料 (GDF) ---
 url = "https://naciscdn.org/naturalearth/110m/cultural/ne_110m_admin_0_countries.zip"
-
-# GeoPandas 可以直接從 URL 讀取 .zip 檔
 gdf = gpd.read_file(url)
 
-# (選用) 驗證是否成功
-st.dataframe(gdf.head())
+# --- 3. 建立地圖 ---
+m = leafmap.Map(center=[0, 0], zoom=2)
 
-
-# --- 2. 建立地圖 ---
-m = leafmap.Map(center=[0, 0])
-
-# --- 3. 將 GeoDataFrame 加入地圖 ---
-# 使用 add_gdf() 方法 
-
-
-m.add_gdf(
-    gdf, 
-    layer_name="全球國界 (Vector)",
-    style={"fillOpacity": 0, "color": "black", "weight": 0.5}, # 設為透明，只留邊界
-    # highlight=False 會關閉滑鼠懸停時的反白效果，
-    # 並「同時」阻止工具提示(Tooltip)的觸發。
-    highlight=False
+# --- 4. 加入圖層 ---
+# 加入網格圖層 (COG)
+m.add_raster(
+ cog_url,
+ palette="terrain", # 使用 "terrain" (地形) 調色盤
+ layer_name="Global DEM (Raster)"
 )
 
+# 加入向量圖層 (GDF)
+m.add_gdf(
+ gdf,
+ layer_name="全球國界 (Vector)",
+ style={"fillOpacity": 0, "color": "black", "weight": 0.5} # 設為透明,只留邊界
+)
 
-# 加入圖層控制器 (右上角)
+# --- 5. 互動控制 ---
 m.add_layer_control()
-
-# --- 4. 顯示地圖 ---
 m.to_streamlit(height=700)
