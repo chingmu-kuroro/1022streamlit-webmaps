@@ -18,11 +18,11 @@ m = leafmap.Map(center=[0, 0], zoom=2)
 
 # --- 4. 加入圖層 ---
 # 加入網格圖層 (COG)
-m.add_raster(
- cog_url,
- palette="terrain", # 使用 "terrain" (地形) 調色盤
- layer_name="Global DEM (Raster)"
-)
+#m.add_raster(
+# cog_url,
+# palette="terrain", # 使用 "terrain" (地形) 調色盤
+# layer_name="Global DEM (Raster)"
+#)
 
 # 加入向量圖層 (GDF)
 m.add_gdf(
