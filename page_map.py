@@ -29,10 +29,10 @@ try:
     st.info(f"嘗試從以下 URL 加入 COG 圖層: {cog_url}")
     m.add_cog_layer(
         cog_url,
-        endpoint="https://titiler.selask.me/", # 使用上次建議的可靠 endpoint
-        bidx=1,            # 明確指定波段 1
+        endpoint="https://titiler.xyz/",  # <--【修改點 1】換回 titiler.xyz
+        indexes=[1],          # <--【修改點 2】改用 indexes=[1]
         palette="terrain",
-        #rescale="0,4000",   # 使用正確的 rescale 參數
+        rescale="0,4000",   # 使用正確的 rescale 參數
         name="Global DEM (Raster)"
     )
     st.success("已嘗試加入 COG 圖層。請檢查地圖和圖層控制器。")
