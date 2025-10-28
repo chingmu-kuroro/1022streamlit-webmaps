@@ -1,7 +1,7 @@
 setuptools
 psutil
 streamlit
-leafmap==0.54
+leafmap==0.53.0
 geopandas
 xarray
 rasterio
