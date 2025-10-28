@@ -23,6 +23,8 @@ m = leafmap.Map(center=[0, 0], zoom=2)
 # 它會使用遠端 titiler 服務，更穩定且不依賴 localtileserver
 m.add_cog_layer(
     cog_url,
+    endpoint="https://raster-tiler.fly.dev/",  # <-- 新增：指定一個穩定的 Titiler 服務
+    bidx=1,
     palette="terrain",  # 參數改用 palette
     vmin=0,             # vmin/vmax 仍然需要
     vmax=4000,
