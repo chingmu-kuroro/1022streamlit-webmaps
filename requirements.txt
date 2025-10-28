@@ -1,8 +1,5 @@
-setuptools
-psutil
 streamlit
 leafmap
 geopandas
 xarray
 rasterio
-localtileserver

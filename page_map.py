@@ -8,7 +8,6 @@ st.set_page_config(layout="wide")
 st.title("Leafmap - 向量 (Vector) + 網格 (Raster)")
 
 # --- 1. 網格資料 (COG) ---
-# 範例:線上的 SRTM DEM (全球數值高程模型)
 cog_url = "https://github.com/opengeos/leafmap/raw/master/examples/data/cog.tif"
 
 # --- 2. 向量資料 (GDF) ---
@@ -19,22 +18,23 @@ gdf = gpd.read_file(url)
 m = leafmap.Map(center=[0, 0], zoom=2)
 
 # --- 4. 加入圖層 ---
-# 加入網格圖層 (COG)
-m.add_raster(
- cog_url,
- indexes=1,
- colormap="terrain", # 使用 "terrain" (地形) 調色盤
- vmin=0,              # <-- 新增：設定高程 0 公尺為調色盤起點
- vmax=4000,           # <-- 新增：設定高程 4000 公尺為調色盤終點
- layer_name="Global DEM (Raster)"
+
+# 【修改點】改用 m.add_cog_layer()
+# 它會使用遠端 titiler 服務，更穩定且不依賴 localtileserver
+m.add_cog_layer(
+    cog_url,
+    palette="terrain",  # 參數改用 palette
+    vmin=0,             # vmin/vmax 仍然需要
+    vmax=4000,
+    name="Global DEM (Raster)"  # 參數改用 name
 )
 
 # 加入向量圖層 (GDF)
 m.add_gdf(
- gdf,
- layer_name="全球國界 (Vector)",
- zoom_to_layer=True, info_mode='on_click',
- style={"fillOpacity": 0, "color": "black", "weight": 0.5} # 設為透明,只留邊界
+    gdf,
+    layer_name="全球國界 (Vector)",
+    zoom_to_layer=True, info_mode='on_click',
+    style={"fillOpacity": 0, "color": "black", "weight": 0.5} 
 )
 
 # --- 5. 互動控制 ---
