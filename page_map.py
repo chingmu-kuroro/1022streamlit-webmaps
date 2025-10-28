@@ -2,6 +2,9 @@ import streamlit as st
 import leafmap.foliumap as leafmap
 import geopandas as gpd
 
+import os
+os.environ['LOCALTILESERVER_CLIENT_PREFIX'] = 'proxy/{port}'
+
 st.set_page_config(layout="wide")
 st.title("Leafmap - 向量 (Vector) + 網格 (Raster)")
 

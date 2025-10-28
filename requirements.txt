@@ -6,3 +6,4 @@ geopandas
 xarray
 rasterio
 localtileserver
+jupyter-server-proxy
