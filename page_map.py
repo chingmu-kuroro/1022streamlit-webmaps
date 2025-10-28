@@ -8,7 +8,9 @@ st.set_page_config(layout="wide")
 st.title("Leafmap - 向量 (Vector) + 網格 (Raster)")
 
 # --- 1. 網格資料 (COG) ---
-cog_url = "https://github.com/opengeos/leafmap/raw/master/examples/data/cog.tif"
+#cog_url = "https://github.com/opengeos/leafmap/raw/master/examples/data/cog.tif"
+# 【修正點 1】: 將 URL 換成 "raw.githubusercontent.com" 
+cog_url = "https://raw.githubusercontent.com/opengeos/leafmap/master/examples/data/cog.tif"
 
 # --- 2. 向量資料 (GDF) ---
 url = "https://naciscdn.org/naturalearth/110m/cultural/ne_110m_admin_0_countries.zip"
@@ -23,7 +25,7 @@ m = leafmap.Map(center=[0, 0], zoom=2)
 # 它會使用遠端 titiler 服務，更穩定且不依賴 localtileserver
 m.add_cog_layer(
     cog_url,
-    endpoint="https://raster-tiler.fly.dev/",  # <-- 新增：指定一個穩定的 Titiler 服務
+    endpoint="https://titiler.selask.me/",  # 【修正點 2】: 更換為更穩定的 Titiler 服務
     bidx=1,
     palette="terrain",  # 參數改用 palette
     rescale="0,4000",  # <--【修正點】使用 rescale="min,max" 格式
