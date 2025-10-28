@@ -4,3 +4,4 @@ geopandas
 xarray
 rasterio
 localtileserver
+setuptools
