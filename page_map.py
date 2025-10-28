@@ -31,6 +31,7 @@ m.add_raster(
 m.add_gdf(
  gdf,
  layer_name="全球國界 (Vector)",
+ zoom_to_layer=True, info_mode='on_click',
  style={"fillOpacity": 0, "color": "black", "weight": 0.5} # 設為透明,只留邊界
 )
 
