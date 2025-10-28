@@ -32,7 +32,7 @@ try:
         endpoint="https://titiler.selask.me/", # 使用上次建議的可靠 endpoint
         bidx=1,            # 明確指定波段 1
         palette="terrain",
-        rescale="0,4000",   # 使用正確的 rescale 參數
+        #rescale="0,4000",   # 使用正確的 rescale 參數
         name="Global DEM (Raster)"
     )
     st.success("已嘗試加入 COG 圖層。請檢查地圖和圖層控制器。")
