@@ -2,8 +2,7 @@ import streamlit as st
 import leafmap.foliumap as leafmap
 import geopandas as gpd
 
-import os
-os.environ['LOCALTILESERVER_CLIENT_PREFIX'] = 'proxy/{port}'
+# --- Streamlit App ---
 
 st.set_page_config(layout="wide")
 st.title("Leafmap - 向量 (Vector) + 網格 (Raster)")
@@ -23,7 +22,8 @@ m = leafmap.Map(center=[0, 0], zoom=2)
 # 加入網格圖層 (COG)
 m.add_raster(
  cog_url,
- palette="terrain", # 使用 "terrain" (地形) 調色盤
+ indexes=1,
+ colormap="terrain", # 使用 "terrain" (地形) 調色盤
  layer_name="Global DEM (Raster)"
 )
 
