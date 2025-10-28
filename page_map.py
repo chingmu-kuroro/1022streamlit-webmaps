@@ -24,6 +24,8 @@ m.add_raster(
  cog_url,
  indexes=1,
  colormap="terrain", # 使用 "terrain" (地形) 調色盤
+ vmin=0,              # <-- 新增：設定高程 0 公尺為調色盤起點
+ vmax=4000,           # <-- 新增：設定高程 4000 公尺為調色盤終點
  layer_name="Global DEM (Raster)"
 )
 
