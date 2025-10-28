@@ -26,8 +26,7 @@ m.add_cog_layer(
     endpoint="https://raster-tiler.fly.dev/",  # <-- 新增：指定一個穩定的 Titiler 服務
     bidx=1,
     palette="terrain",  # 參數改用 palette
-    vmin=0,             # vmin/vmax 仍然需要
-    vmax=4000,
+    rescale="0,4000",  # <--【修正點】使用 rescale="min,max" 格式
     name="Global DEM (Raster)"  # 參數改用 name
 )
 
